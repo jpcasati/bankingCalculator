@@ -6,6 +6,7 @@
 package presentation;
 
 import business.FinanceCalculator;
+import com.sun.org.apache.xalan.internal.xsltc.runtime.BasisLibrary;
 import data.FinanceBean;
 import java.util.Scanner;
 
@@ -27,10 +28,13 @@ public class FinanceUserInterface {
 
     public void perform() {
         char choice;
-
+        
+        //char choice = choice.toUpperCase();
+            
+        
         do {
             
-            System.out.println("Please, enter a char from A to D: ");
+            System.out.println("Please, choose your Operation): ");
             System.out.println("(A) - Loan Calculator");
             System.out.println("(B) - Saving Goal Calculator");
             System.out.println("(C) - Future Value Calculator");
@@ -43,21 +47,27 @@ public class FinanceUserInterface {
                     financeCalculator.calculateLoanPayment();
                     displayLoanResult();
                 } break;
+                
                 case 'B': { // Ask for Savings Goal info
                     requestSavingsGoalInfo();
                     financeCalculator.calculateSavingsGoal();
                     displaySavingsGoalResult();
                 } break;
-                case 'C': { // Ask for Futire Value info
+                
+                case 'C': { // Ask for Future Value info
                     requestFutureValueInfo();
                     financeCalculator.calculateFutureValue();
                     displayFutureValueResult();
                 } break;
+                
                 case 'D': { // Program exit
-                    System.out.println("GOOD BYE");
+                    System.out.println("Thank You For Using our System");
+                    System.out.println("********** GOOD BYE **********");
+                            
+                    
                 } break;
                 default: {
-                    System.out.println("I should never see this");
+                    System.out.println("Incorrect Input: ");
                 } break;
             }
         } while (choice != 'D');
@@ -65,9 +75,14 @@ public class FinanceUserInterface {
 
     // You will need to implement methods as found in MenuExample
     private char menu() {
-        char choice = sc.next().charAt(0);
-
+        
+        
+        char choice = sc.next().toUpperCase().charAt(0);  // checar
+        
+        
         return choice;
+       
+         
     }
 
     /* 
@@ -76,7 +91,7 @@ public class FinanceUserInterface {
      */
     private void requestLoanPaymentInfo() {
         
-        System.out.println("Enter the Total Amont of the Loan ($): ");
+        System.out.println("Enter the Total Amount of the Loan ($): ");
         double res = sc.nextDouble();
         financeBean.setPv(res);
 
@@ -91,10 +106,38 @@ public class FinanceUserInterface {
     }
 
     private void requestSavingsGoalInfo() {
+        
+      System.out.println("Enter the Total Amont Desired ($): ");
+        double res = sc.nextDouble();
+        financeBean.setFv(res);
+
+        System.out.println("Enter the Annual Interest Rate (%): ");
+        res = sc.nextDouble();
+        financeBean.setRate(res);
+
+        System.out.println("Enter the Number of Years to Reach your Goal ");
+        res = sc.nextDouble();
+        financeBean.setN(res);  
+        
 
     }
 
     private void requestFutureValueInfo() {
+        
+        
+     System.out.println("Enter the Amount PER MONTH You Want to Invest($): ");
+        double res = sc.nextDouble();
+        financeBean.setPmt(res);
+
+        System.out.println("Enter the Annual Interest Rate Projected (%): ");
+        res = sc.nextDouble();
+        financeBean.setRate(res);
+
+        System.out.println("Enter the Number of Years for Your Investment ");
+        res = sc.nextDouble();
+        financeBean.setN(res);  
+            
+        
 
     }
 
@@ -107,11 +150,21 @@ public class FinanceUserInterface {
     }
 
     private void displaySavingsGoalResult() {
+    System.out.println("RESULT: " + financeBean.getPmt());    
 
     }
 
     private void displayFutureValueResult() {
-
+    //System.out.println("RESULT: " + financeBean.getFv());
+        //System.out.println(Math.round(num2));
+        //System.out.println("RESULT: " + Math.round(financeBean.getFv()));
+        
+        System.out.printf("RESULT: %.2f\n", financeBean.getFv());
+        
+        //System.out.println("RESULT: " + Math.round(financeBean.getFv()));
+        
+       //BigDecimal salary3 = new BigDecimal(input).setScale(2, RoundingMode.HALF_UP
+       
     }
     
 }

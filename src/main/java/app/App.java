@@ -7,6 +7,7 @@ package app;
 
 import business.FinanceCalculator;
 import data.FinanceBean;
+import presentation.FinanceScreen;
 import presentation.FinanceUserInterface;
 
 /**
@@ -33,7 +34,8 @@ public class App {
     }
     
     public static void main(String[] args) {
-        new App().perform();
+//        new App().perform();
+        new FinanceScreen().setVisible(true);
     }
     
 }

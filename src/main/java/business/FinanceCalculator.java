@@ -9,7 +9,7 @@ import data.FinanceBean;
 
 /**
  *
- * @author jpcasati
+ * @author Carlos
  */
 public class FinanceCalculator {
     
@@ -20,10 +20,10 @@ public class FinanceCalculator {
     }
 
 
-    public void calculateDemo() {
-        double result = financeBean.getRate() * financeBean.getPmt();
-        financeBean.setPv(result);
-    }
+//    public void calculateDemo() {
+//        double result = financeBean.getRate() * financeBean.getPmt();
+//        financeBean.setPv(result);
+//    }
 
     public void calculateLoanPayment() {
         
@@ -43,11 +43,17 @@ public class FinanceCalculator {
      
      //c4 = c1  / ((1+c2) * ((Math.pow((1+c2),c3)-1)/c2));
       
-     double result = financeBean.getFv()  / ((1+financeBean.getRate()) * 
-             ((Math.pow((1+financeBean.getRate()),financeBean.getN())-1)/financeBean.getRate()));
+     //double result = financeBean.getFv()  * (financeBean.getRate()) / 
+            // ((1 -(Math.pow(1+financeBean.getRate(),financeBean.getN()))));
      
-     financeBean.setPmt(result);
+     //double result = (financeBean.getFv()*financeBean.getRate()) / ((1 - Math.pow((1 + financeBean.getRate()), financeBean.getN())));
+       double result = (financeBean.getFv() * financeBean.getRate()) / ((1 - Math.pow((1 + financeBean.getRate()), financeBean.getN())));
+             
+            
      
+     
+     //financeBean.setPmt(result);
+     financeBean.setPmt(Math.abs(result));
 
     }
 
@@ -55,18 +61,13 @@ public class FinanceCalculator {
         
         financeBean.setRate(financeBean.getRate()/(12*100));
         financeBean.setN(financeBean.getN()*12);
-       
-        double result = (financeBean.getPmt() * (1+financeBean.getRate())) * 
-                ((Math.pow((1+financeBean.getRate()),financeBean.getN())-1)/financeBean.getRate());
         
+         
+          //double result = financeBean.getPmt() * (((1-(Math.pow(1+financeBean.getRate(),financeBean.getN()))))) / financeBean.getRate(); 
+         double result = financeBean.getPmt() * ((1 - Math.pow((1 + financeBean.getRate()),financeBean.getN()))) / financeBean.getRate(); 
           
-            //System.out.println("pmt" +pmt);  por que nao aceita ?
-            //System.out.println("fv" +rate);  por que nao aceita ?
-           
-            financeBean.setFv(result);
-          
-            
-            
+           //financeBean.setFv(result);
+          financeBean.setFv(Math.abs(result));
     }
     
 }

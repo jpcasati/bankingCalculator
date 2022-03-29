@@ -1,20 +1,17 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package presentation;
-
 import business.FinanceCalculator;
-import com.sun.org.apache.xalan.internal.xsltc.runtime.BasisLibrary;
 import data.FinanceBean;
 import java.util.Scanner;
-
 /**
  *
- * @author jpcasati
+ * @author Carlos
  */
 public class FinanceUserInterface {
+    
     
     private final FinanceCalculator financeCalculator;
     private final FinanceBean financeBean;
@@ -73,16 +70,12 @@ public class FinanceUserInterface {
         } while (choice != 'D');
     }
 
-    // You will need to implement methods as found in MenuExample
-    private char menu() {
+       private char menu() {
         
+       char choice = sc.next().toUpperCase().charAt(0);  // checar
         
-        char choice = sc.next().toUpperCase().charAt(0);  // checar
-        
-        
-        return choice;
+           return choice;
        
-         
     }
 
     /* 
@@ -146,25 +139,24 @@ public class FinanceUserInterface {
     calculation as found in the FinanceBean
      */
     private void displayLoanResult() {
-        System.out.println("RESULT: " + financeBean.getPmt());
+        //System.out.println("RESULT: " + financeBean.getPmt());
+        System.out.printf("For This Loan at The Conditions Informed, We Project a Payment of $%.2f / Month.\n\n", financeBean.getPmt());
+        System.out.println("Please, choose other Operation or Exit):") ;
     }
 
     private void displaySavingsGoalResult() {
-    System.out.println("RESULT: " + financeBean.getPmt());    
-
+    //System.out.println("RESULT: " + financeBean.getPmt());    
+        System.out.printf("At the Conditions Informed, We Project You Will be Reaching the Amount Desired Investing $%.2f  / Month.\n\n", financeBean.getPmt()); 
+        
+        System.out.println("Please, choose other Operation or Exit):") ;
     }
 
     private void displayFutureValueResult() {
-    //System.out.println("RESULT: " + financeBean.getFv());
-        //System.out.println(Math.round(num2));
-        //System.out.println("RESULT: " + Math.round(financeBean.getFv()));
+    //System.out.println("RESULT: " + Math.round(financeBean.getFv()));
+    System.out.printf("At the Conditions Informed, We Project You May be Investing $ %.2f / Month to Reach the Amont of $%.2f \n\n",financeBean.getPmt(), financeBean.getFv());
         
-        System.out.printf("RESULT: %.2f\n", financeBean.getFv());
-        
-        //System.out.println("RESULT: " + Math.round(financeBean.getFv()));
-        
-       //BigDecimal salary3 = new BigDecimal(input).setScale(2, RoundingMode.HALF_UP
-       
     }
+    
+    
     
 }

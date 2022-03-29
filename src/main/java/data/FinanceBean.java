@@ -7,7 +7,7 @@ package data;
 
 /**
  *
- * @author jpcasati
+ * @author Carlos
  */
 public class FinanceBean {
     
